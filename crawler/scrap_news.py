@@ -36,7 +36,21 @@ def get_news(site, category):
 
 
     elif site == "BBC":
-        soup = BeautifulSoup(c)
-        # soup.find_all("div", {"id": "comp-pattern-library-5"})
+        soup = BeautifulSoup(c, "html.parser")
+        # Buzzard
+        buzzard = soup.find("div", {"class": "buzzard-item"})
+        abstract = buzzard.find("div", {"class": "buzzard__body"})
+        title = buzzard.find("a").text
+        link = "https://bbc.com" + buzzard.find("a").get("href")
+        # Pigeon
+        pigeon_items = soup.find("div", {"class": "pigeon"}).find_all("div", {"class": "pigeon-item"})
+        for item in pigeon_items:
+            body = item.find("div", {"class": "pigeon-item__body"})
+            if body:
+                title = body.find("a").text
+                href = "https://bbc.com" + body.find("a").get("href")
+                abstract = body.find("p").text
+                print(title, abstract, href)
 
-get_news("TODAY", "World")
+
+get_news("BBC", "World")
