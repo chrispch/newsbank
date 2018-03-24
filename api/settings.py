@@ -72,6 +72,10 @@ articles_schema = {
         'type': 'string',
         'required': True
     },
+    'full_text': {
+        'type': 'string',
+        'required': True
+    }
     'date': {
         'type': 'string',
         'required': True
