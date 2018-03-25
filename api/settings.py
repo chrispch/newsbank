@@ -81,8 +81,7 @@ articles_schema = {
         'required': True
     },
     'author': {
-        'type': 'string',
-        'required': True
+        'type': 'string'
     },
     'href': {
         'type': 'string',
