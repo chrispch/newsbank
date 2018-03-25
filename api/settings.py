@@ -76,8 +76,8 @@ articles_schema = {
         'type': 'string',
         'required': True
     }
-    'date': {
-        'type': 'string',
+    'date_seconds': {
+        'type': 'float',
         'required': True
     },
     'author': {
