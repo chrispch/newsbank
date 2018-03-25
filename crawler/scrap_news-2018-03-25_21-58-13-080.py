@@ -82,13 +82,14 @@ special_scrap_instructions = {  "TODAY": {
 def get_news(site, category):
     url = news_providers[site][category]
     c = requests.get(url).content
-    soup = BeautifulSoup(c, "xml")
+    soup = BeautifulSoup(c, "lxml")
+    print(soup.prettify())
     news_items = soup.find_all("item")
     for news in news_items:
         # get title
         title = news.find("title").text
         # get article link
-        href = news.find("link").text
+        href = news.get("link")
         print(href)
         if "https" not in href:
             href = url + "/" + href
@@ -148,7 +149,7 @@ def parse_instructions(i, news_ref, article_ref):
     if "attr" in i:
         return results[i["attr"]]
     else:
-        print(results)
+        # print(results)
         return results
 
 
