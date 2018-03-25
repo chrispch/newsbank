@@ -75,7 +75,7 @@ articles_schema = {
     'full_text': {
         'type': 'string',
         'required': True
-    }
+    },
     'date_seconds': {
         'type': 'float',
         'required': True
@@ -93,10 +93,6 @@ articles_schema = {
 
 articles = {
     'item_title': 'article',
-    'additional_lookup': {
-        'url': 'regex("[\w]+")',
-        'field': 'article_id'
-    },
     'resource_methods': ['GET', 'POST'],
     'schema': articles_schema
 }
