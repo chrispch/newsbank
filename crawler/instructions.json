@@ -1,0 +1,82 @@
+{
+    "BBC": {
+      "Default": {
+        "author": null,
+        "article": {
+          "cdn": false,
+          "base_url": "{}"
+        },
+        "date_seconds": {
+          "tag": "pubDate",
+          "from_article": false
+        },
+        "abstract": {
+          "tag": "description",
+          "from_article": false
+        },
+        "full_text": {
+          "class": "story-body__inner",
+          "from_article": true
+        }
+      }
+    },
+    "Guardian": {
+      "Default": {
+        "author": {
+          "tag": "dc:creator",
+          "from_article": false
+        },
+        "article": {
+          "cdn": false,
+          "base_url": "{}"
+        },
+        "date_seconds": {
+          "tag": "pubDate",
+          "from_article": false
+        },
+        "abstract": {
+          "tag": "description",
+          "from_article": false
+        },
+        "full_text": {
+          "class": "content__article-body",
+          "from_article": true
+        }
+      }
+    },
+    "TODAY": {
+      "Default": {
+        "author": {
+          "json": [
+            "node",
+            "author",
+            0,
+            "name"
+          ],
+          "from_article": true
+        },
+        "article": {
+          "cdn": true,
+          "base_url": "https://www.todayonline.com/api/v3/article/{}?tid=3"
+        },
+        "date_seconds": {
+          "tag": "pubDate",
+          "from_article": false
+        },
+        "abstract": {
+          "json": [
+            "node",
+            "body"
+          ],
+          "from_article": true
+        },
+        "full_text": {
+          "json": [
+            "node",
+            "body"
+          ],
+          "from_article": true
+        }
+      }
+    }
+  }

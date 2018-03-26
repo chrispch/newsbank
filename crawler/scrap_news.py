@@ -1,93 +1,19 @@
 import requests
 import json
+import os
 from bs4 import BeautifulSoup
 from datetime import datetime, time
 
-news_providers = {  "TODAY": {
-                        "Hot News": "http://www.todayonline.com/hot-news/feed",
-                        "Singapore": "http://www.todayonline.com/feed/singapore", 
-                        "World": "http://www.todayonline.com/feed/world"
-                    },
-                    "BBC": {
-                        "World": "http://feeds.bbci.co.uk/news/world/rss.xml"
-                    },
-                    "Guardian": {
-                        "World": "https://www.theguardian.com/world/rss"
-                    }
-
-                }
+provider_json = os.path.dirname(os.path.realpath(__file__)) + "/news_providers.json"
+instructions_json = os.path.dirname(os.path.realpath(__file__)) + "/instructions.json"
 api_url = "http://127.0.0.1:5000/"
 
-special_scrap_instructions = {  "TODAY": {
-                                    "Default": {
-                                        "article": {
-                                            "cdn":True,
-                                            "base_url": "https://www.todayonline.com/api/v3/article/{}?tid=3"
-                                        }, 
-                                        "full_text": {
-                                            "from_article":True,
-                                            "json":["node", "body"]
-                                        },
-                                        "abstract": {
-                                            "from_article":True,
-                                            "json":["node", "body"]
-                                        },
-                                        "date_seconds": {
-                                            "from_article":False,
-                                            "tag":"pubDate"
-                                        },
-                                        "author":{
-                                            "from_article":True,
-                                            "json":["node", "author", 0, "name"]
-                                        }
-                                    }
-                                },
-                                "BBC": {
-                                    "Default": {
-                                        "article": {
-                                            "cdn":False,
-                                            "base_url": "{}"
-                                        }, 
-                                        "full_text": {
-                                            "from_article":True,
-                                            "class":"story-body__inner"
-                                        },
-                                        "abstract": {
-                                            "from_article":False,
-                                            "tag":"description"
-                                        },
-                                        "date_seconds": {
-                                            "from_article":False,
-                                            "tag":"pubDate"
-                                        },
-                                        "author":None
-                                    }
-                                },
-                                "Guardian": {
-                                    "Default": {
-                                        "article": {
-                                            "cdn":False,
-                                            "base_url": "{}"
-                                        }, 
-                                        "full_text": {
-                                            "from_article":True,
-                                            "class":"content__article-body"
-                                        },
-                                        "abstract": {
-                                            "from_article":False,
-                                            "tag":"description"
-                                        },
-                                        "date_seconds": {
-                                            "from_article":False,
-                                            "tag":"pubDate"
-                                        },
-                                        "author": {
-                                            "from_article":False,
-                                            "tag":"dc:creator"
-                                        }
-                                    },
-                                }
-                            }
+# load jsons
+with open(provider_json, "r") as f:
+    news_providers = json.load(f)
+
+with open(instructions_json, "r") as f:
+    instructions = json.load(f)
 
 def get_news(site, category):
     url = news_providers[site][category]
@@ -107,10 +33,10 @@ def get_news(site, category):
         print(href)
 
         # check if there are special scrap instructions for current category
-        if category not in special_scrap_instructions[site]:
-            i = special_scrap_instructions[site]["Default"]
+        if category not in instructions[site]:
+            i = instructions[site]["Default"]
         else:
-            i = special_scrap_instructions[site][category]
+            i = instructions[site][category]
 
         # get article html/json
         if i["article"]["cdn"]:

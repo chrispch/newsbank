@@ -1,0 +1,40 @@
+{
+  "TODAY": {
+    "Entertainment": "http://www.todayonline.com/feed/entertainment",
+    "World": "http://www.todayonline.com/feed/world",
+    "Business": "http://www.todayonline.com/feed/business",
+    "Hot News": "http://www.todayonline.com/hot-news/feed",
+    "Voices": "http://www.todayonline.com/feed/voices",
+    "Lifestyle": "http://www.todayonline.com/feed/lifestyle",
+    "Tech": "http://www.todayonline.com/feed/tech",
+    "Daily Focus": "http://www.todayonline.com/feed/daily-focus",
+    "Blogs": "http://www.todayonline.com/feed/blogs",
+    "Commentary": "http://www.todayonline.com/feed/commentary",
+    "Singapore": "http://www.todayonline.com/feed/singapore",
+    "China & India": "http://www.todayonline.com/feed/china&india",
+    "Sports": "http://www.todayonline.com/feed/sports"
+  },
+  "BBC": {
+    "World": "http://feeds.bbci.co.uk/news/world/rss.xml",
+    "Top Stories": "http://feeds.bbci.co.uk/news/rss.xml",
+    "UK": "http://feeds.bbci.co.uk/news/uk/rss.xml",
+    "Business": "http://feeds.bbci.co.uk/news/business/rss.xml",
+    "Politics": "http://feeds.bbci.co.uk/news/politics/rss.xml",
+    "Health": "http://feeds.bbci.co.uk/news/health/rss.xml",
+    "Education": "http://feeds.bbci.co.uk/news/education/rss.xml",
+    "Science & Environment": "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+    "Technology": "http://feeds.bbci.co.uk/news/technology/rss.xml",
+    "Entertainment & Arts": "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
+  },
+  "Guardian": {
+    "World": "https://www.theguardian.com/world/rss",
+    "UK": "https://www.theguardian.com/uk-news/rss",
+    "Science": "https://www.theguardian.com/science/rss",
+    "Cities": "https://www.theguardian.com/cities/rss",
+    "Global Development ": "https://www.theguardian.com/global-development/rss",
+    "Football": "https://www.theguardian.com/football/rss",
+    "Technology": "https://www.theguardian.com/uk/technology/rss",
+    "Business": "https://www.theguardian.com/uk/business/rss",
+    "Environment": "https://www.theguardian.com/uk/environment/rss"
+  }
+}
