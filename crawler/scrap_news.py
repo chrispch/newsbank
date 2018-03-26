@@ -8,7 +8,6 @@ from pymongo import MongoClient, DESCENDING, TEXT
 provider_json = os.path.dirname(os.path.realpath(__file__)) + "/news_providers.json"
 instructions_json = os.path.dirname(os.path.realpath(__file__)) + "/instructions.json"
 password_txt = os.path.dirname(os.path.realpath(__file__)) + "/password.txt"
-api_url = "http://127.0.0.1:5000/"
 database = "newsbank"
 collection = "articles"
 
@@ -22,13 +21,9 @@ def get_db(database, collection, username, password, port="27017", host="localho
 
 # create Mongo indexes
 def create_indexes(db):
-    # i = db.index_information()
-    # if 
-    # else:
     db.create_index([("full_text", TEXT), ("title", TEXT)])
-    db.create_index([("date_seconds", DESCENDING)], unique=True)
-    print(db.index_information())
-            
+    db.create_index([("date_seconds", DESCENDING)])
+    # print(db.index_information())
 
 # scraps news on a given site and category
 def get_news(site, category, db):
@@ -92,7 +87,7 @@ def get_news(site, category, db):
         if not i["article"]["cdn"]:
             article_body = parse_instructions(i["full_text"], news, article)
         else:
-            article_body = BeautifulSoup(parse_instructions(i["full_text"], news, article))
+            article_body = BeautifulSoup(parse_instructions(i["full_text"], news, article), "html.parser")
         if article_body != None:
             paragraphs = article_body.find_all("p")
             full_text = ""
@@ -176,4 +171,6 @@ with open (password_txt , 'r') as pw:
 
 articles_db = get_db(database, collection, username, password)
 create_indexes(articles_db)
-get_news("BBC", "World", articles_db)
+for site in news_providers:
+    for category in news_providers[site]:
+        get_news(site, category, articles_db)
