@@ -115,7 +115,7 @@ def save_article(site, category, title, abstract, full_text, date_seconds, autho
         "href": href
     }
     # print(article)
-    db.insert_one(article)
+    db.update_one(article, {"$set": article}, True)
 
 def parse_instructions(i, news_ref, article_ref):
     if i == None:
