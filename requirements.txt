@@ -20,7 +20,7 @@ googleapis-common-protos==1.5.3
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
-lxml==4.2.1
+lxml==4.9.1
 MarkupSafe==0.23
 protobuf==3.5.2.post1
 pyasn1==0.4.2
